@@ -1,6 +1,5 @@
 package polynomial;
 
-
 public class PolynomialElementNode implements PolynomialNode {
 
   private int coefficient;
@@ -62,16 +61,16 @@ public class PolynomialElementNode implements PolynomialNode {
     for (String x : element) {
       String[] term = x.split("x\\^");
       if (term.length > 1) {
-        po.addTerm(Integer.parseInt(term[0]) , Integer.parseInt(term[1]) );
+        po.addTerm(Integer.parseInt(term[0]), Integer.parseInt(term[1]));
       } else if (term.length == 1) {
-        po.addTerm(Integer.parseInt(term[0]) , 0);
+        po.addTerm(Integer.parseInt(term[0]), 0);
       }
     }
-    return helperAdd( po);
+    return helperAdd(po);
   }
 
-  public Polynomial helperAdd( Polynomial po) {
-    po.addTerm(this.coefficient,this.power);
+  public Polynomial helperAdd(Polynomial po) {
+    po.addTerm(this.coefficient, this.power);
 
     return rest.helperAdd(po);
   }
@@ -86,7 +85,7 @@ public class PolynomialElementNode implements PolynomialNode {
   public Polynomial derviateHelper(Polynomial po) {
     int newCoeff = this.coefficient * this.power;
     int newPow = power - 1;
-    if(newPow <0){
+    if (newPow < 0) {
       newPow = 0;
     }
     po.addTerm(newCoeff, newPow);
@@ -128,7 +127,6 @@ public class PolynomialElementNode implements PolynomialNode {
     }
     return str.toString() + this.rest.toString();
   }
-
 
 
 }

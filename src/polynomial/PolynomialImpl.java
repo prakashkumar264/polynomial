@@ -1,7 +1,5 @@
 package polynomial;
 
-import java.util.Scanner;
-import java.util.regex.MatchResult;
 
 public class PolynomialImpl implements Polynomial {
   private PolynomialNode head;
@@ -11,23 +9,16 @@ public class PolynomialImpl implements Polynomial {
   }
 
   public PolynomialImpl(String input) {
-     head = new PolynomialEmptyNode();
-     Scanner scanner = new Scanner(input);
-     while(scanner.hasNext()){
-       String term = scanner.next();
-       Scanner termObj = new Scanner(term);
-       int coefficient;
-       int degree;
-       if(term.matches("^(-?\\+?[0-9]+)x?\\^?([0-9]*)$")){
-         termObj.findInLine("^(-?\\+?[0-9]+)x?\\^?([0-9]*)$");
-         MatchResult result = termObj.match();
-         coefficient = Integer.parseInt(result.group(1));
-         degree = result.group(2).equals("") ? 0 : Integer.parseInt(result.group(2));
-         head = head.addTerm(coefficient, degree);
-       }else{
-         throw  new IllegalArgumentException("not valid");
-       }
-     }
+    head = new PolynomialEmptyNode();
+    String[] element = input.split("\\s");
+    for (String x : element) {
+      String[] term = x.split("x\\^");
+      if (term.length > 1) {
+        addTerm(Integer.parseInt(term[0]), Integer.parseInt(term[1]));
+      } else if (term.length == 1) {
+        addTerm(Integer.parseInt(term[0]), 0);
+      }
+    }
   }
 
   @Override
@@ -67,8 +58,8 @@ public class PolynomialImpl implements Polynomial {
 
   public String toString() {
     String resultString = head.toString();
-    if(resultString.length() == 0){
-      return  "0";
+    if (resultString.length() == 0) {
+      return "0";
     }
     if (resultString.charAt(0) == '+') {
       resultString = resultString.substring(1);
@@ -89,6 +80,6 @@ public class PolynomialImpl implements Polynomial {
   }
 
   public int hashCode() {
-    return 197*19;
+    return 197 * 19;
   }
 }

@@ -3,9 +3,9 @@ package polynomial;
 public class PolynomialEmptyNode implements PolynomialNode {
 
   public PolynomialNode addTerm(int coefficient, int power) {
-    if (coefficient!= 0 &&  power >= 0) {
+    if (coefficient != 0 && power >= 0) {
       return new PolynomialElementNode(coefficient, power, this);
-    } else if(coefficient ==0 && power >= 0){
+    } else if (coefficient == 0 && power >= 0) {
       return new PolynomialElementNode(0, 0, this);
     } else {
       throw new IllegalArgumentException("Not valid");
@@ -58,7 +58,7 @@ public class PolynomialEmptyNode implements PolynomialNode {
   }
 
   @Override
-  public Polynomial helperAdd( Polynomial po) {
+  public Polynomial helperAdd(Polynomial po) {
     return po;
   }
 
