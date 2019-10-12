@@ -1,17 +1,28 @@
 package polynomial;
 
+/**
+ * This class represents an empty node in the polynomial implementation.
+ */
 public class PolynomialElementNode implements PolynomialNode {
 
   private int coefficient;
   private int power;
   private PolynomialNode rest;
 
+  /**
+   * This class adds a polynomial term to the current list.
+   *
+   * @param coefficient coefficient of the term.
+   * @param power       power of the term.
+   * @param rest        rest of the polynomial.
+   */
   PolynomialElementNode(int coefficient, int power, PolynomialNode rest) {
     this.coefficient = coefficient;
     this.power = power;
     this.rest = rest;
   }
 
+  @Override
   public PolynomialElementNode addTerm(int c, int p) {
     if (p < 0) {
       throw new IllegalArgumentException("Invalid");
@@ -68,6 +79,7 @@ public class PolynomialElementNode implements PolynomialNode {
     return helperAdd(po);
   }
 
+  @Override
   public Polynomial helperAdd(Polynomial po) {
     po.addTerm(this.coefficient, this.power);
     return rest.helperAdd(po);
@@ -80,6 +92,7 @@ public class PolynomialElementNode implements PolynomialNode {
     return derviateHelper(po);
   }
 
+  @Override
   public Polynomial derviateHelper(Polynomial po) {
     int newCoeff = this.coefficient * this.power;
     int newPow = power - 1;
@@ -98,12 +111,14 @@ public class PolynomialElementNode implements PolynomialNode {
     return helperMultiply(input, po);
   }
 
+  @Override
   public Polynomial helperMultiply(String input, Polynomial po) {
     String[] element = input.split("\\+|(?=-)");
     for (String x : element) {
       String[] term = x.split("x\\^");
       if (term.length > 1) {
-        po.addTerm(Integer.parseInt(term[0]) * this.coefficient, Integer.parseInt(term[1]) + this.power);
+        po.addTerm(Integer.parseInt(term[0]) * this.coefficient,
+                Integer.parseInt(term[1]) + this.power);
       } else if (term.length == 1) {
         po.addTerm(Integer.parseInt(term[0]) * this.coefficient, this.power);
       }
@@ -112,6 +127,7 @@ public class PolynomialElementNode implements PolynomialNode {
     return rest.helperMultiply(input, po);
   }
 
+  @Override
   public String toString() {
     StringBuilder str = new StringBuilder();
     if (this.coefficient > 0) {

@@ -16,7 +16,6 @@ package polynomial;
  * polynomials. The derivative of a polynomial (from differential calculus) is a polynomial made up
  * of the derivative of each term. The derivative of a term 𝑎𝑥𝑏 is a term with coefficient 𝑎𝑏
  * with the variable raised to the power 𝑏−1. The derivative of a constant term (𝑥0) is 0.
- *
  * This interface defines a polynomial that does the above operations. This interface implements the
  * polynomial as a list of terms. Each term is an individual node and all the operations are done on
  * each nodes.
@@ -28,7 +27,6 @@ public interface Polynomial {
    *
    * @param coefficient The coefficient of the term.
    * @param power The power of the term.
-   * @return A new Polynomial term and add it to the list.
    * @throws IllegalArgumentException If power is negative, Exception will be thrown.
    */
   void addTerm(int coefficient, int power) throws IllegalArgumentException;

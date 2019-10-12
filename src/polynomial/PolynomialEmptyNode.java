@@ -1,7 +1,11 @@
 package polynomial;
 
+/**
+ * This class represents an empty node in the polynomial implementation.
+ */
 public class PolynomialEmptyNode implements PolynomialNode {
 
+  @Override
   public PolynomialNode addTerm(int coefficient, int power) {
     if (coefficient != 0 && power >= 0) {
       return new PolynomialElementNode(coefficient, power, this);
@@ -13,6 +17,7 @@ public class PolynomialEmptyNode implements PolynomialNode {
 
   }
 
+  @Override
   public String toString() {
     return "";
   }

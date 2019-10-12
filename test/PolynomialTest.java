@@ -5,6 +5,9 @@ import polynomial.PolynomialImpl;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * This class is used to test the operations on polynomials.
+ */
 public class PolynomialTest {
 
   @Test
