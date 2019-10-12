@@ -1,13 +1,24 @@
 package polynomial;
 
-
+/**
+ * This class implements the Polynomial Interface.
+ */
 public class PolynomialImpl implements Polynomial {
   private PolynomialNode head;
 
+  /**
+   * This constructor creates a empty polynomial.
+   */
   public PolynomialImpl() {
     head = new PolynomialEmptyNode();
   }
 
+  /**
+   * This constructor takes in a polynomial as string as input and checks for validation and parses
+   * it as a polynomial and creates the list of terms.
+   *
+   * @param input Polynomial as a String
+   */
   public PolynomialImpl(String input) {
     head = new PolynomialEmptyNode();
     String[] element = input.split("\\s");
@@ -56,6 +67,11 @@ public class PolynomialImpl implements Polynomial {
     return head.derivative();
   }
 
+  /**
+   * A method which converts the list of terms of polynomial as a String.
+   *
+   * @return String representation of the polynomial.
+   */
   public String toString() {
     String resultString = head.toString();
     if (resultString.length() == 0) {
@@ -67,7 +83,10 @@ public class PolynomialImpl implements Polynomial {
     return resultString;
   }
 
-
+  /**
+   * A method which compares whether two polynomial are same or not. If polynomial are same it
+   * returns true or else false.
+   */
   public boolean equals(Object obj) {
     if (this == obj) {
       return true;
@@ -79,6 +98,11 @@ public class PolynomialImpl implements Polynomial {
     return this.toString().equals(newPolynomial.toString());
   }
 
+  /**
+   * A method to compare two polynomial objects using hashcode.
+   *
+   * @return a unique hash code.
+   */
   public int hashCode() {
     return 197 * 19;
   }

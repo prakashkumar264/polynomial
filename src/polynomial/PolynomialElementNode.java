@@ -12,7 +12,6 @@ public class PolynomialElementNode implements PolynomialNode {
     this.rest = rest;
   }
 
-
   public PolynomialElementNode addTerm(int c, int p) {
     if (p < 0) {
       throw new IllegalArgumentException("Invalid");
@@ -71,7 +70,6 @@ public class PolynomialElementNode implements PolynomialNode {
 
   public Polynomial helperAdd(Polynomial po) {
     po.addTerm(this.coefficient, this.power);
-
     return rest.helperAdd(po);
   }
 
