@@ -19,15 +19,23 @@ public class PolynomialImpl implements Polynomial {
    *
    * @param input Polynomial as a String
    */
-  public PolynomialImpl(String input) {
+  public PolynomialImpl(String input) throws IllegalArgumentException {
     head = new PolynomialEmptyNode();
     String[] element = input.split("\\s");
     for (String x : element) {
       String[] term = x.split("x\\^");
       if (term.length > 1) {
-        addTerm(Integer.parseInt(term[0]), Integer.parseInt(term[1]));
+        if (term[0].matches("^[-+]?\\d+$") && term[1].matches("^[-+]?\\d+$")) {
+          addTerm(Integer.parseInt(term[0]), Integer.parseInt(term[1]));
+        } else {
+          throw new IllegalArgumentException("Invalid String Polynomial");
+        }
       } else if (term.length == 1) {
-        addTerm(Integer.parseInt(term[0]), 0);
+        if (term[0].matches("^[-+]?\\d+$")) {
+          addTerm(Integer.parseInt(term[0]), 0);
+        } else {
+          throw new IllegalArgumentException("Invalid String Polynomial");
+        }
       }
     }
   }

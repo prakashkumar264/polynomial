@@ -1,5 +1,6 @@
 package polynomial;
 
+
 /**
  * This class represents an empty node in the polynomial implementation.
  */
