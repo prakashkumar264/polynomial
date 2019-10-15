@@ -55,6 +55,20 @@ public class PolynomialTest {
   }
 
   @Test
+  public void testEmptyPolynomialMultiplyValidPolynomial() {
+    Polynomial poly = new PolynomialImpl();
+    Polynomial newP = new PolynomialImpl("-3x^4 -2x^5 -5 +11x^1");
+    assertEquals(null, poly.multiply(newP));
+  }
+
+  @Test
+  public void testEmptyPolynomialAddValidPolynomial() {
+    Polynomial poly = new PolynomialImpl();
+    Polynomial newP = new PolynomialImpl("-3x^4 -2x^5 -5 +11x^1");
+    assertEquals("-2x^5-3x^4+11x^1-5", poly.add(newP).toString());
+  }
+
+  @Test
   public void testEmptyPolynomialEqualsPolynomial() {
     Polynomial poly = new PolynomialImpl();
     Polynomial newP = new PolynomialImpl();
@@ -184,7 +198,7 @@ public class PolynomialTest {
     poly.addTerm(-1, 16);
     poly.addTerm(8, 8);
     poly.addTerm(42, 50);
-    poly.addTerm(-12575,0);
+    poly.addTerm(-12575, 0);
     assertEquals("125x^185+82x^124-142x^96+154x^88+27x^75+79x^55+42x^50+21x^45-1x^16" +
             "+8x^8-12575", poly.toString());
   }
@@ -202,7 +216,7 @@ public class PolynomialTest {
     poly.addTerm(-1, 16);
     poly.addTerm(8, 8);
     poly.addTerm(42, 50);
-    poly.addTerm(-12575,0);
+    poly.addTerm(-12575, 0);
     assertEquals(185, poly.getDegree());
   }
 
@@ -219,7 +233,7 @@ public class PolynomialTest {
     poly.addTerm(-1, 16);
     poly.addTerm(8, 8);
     poly.addTerm(42, 50);
-    poly.addTerm(-12575,0);
+    poly.addTerm(-12575, 0);
     assertEquals(-142, poly.getCoefficient(96));
   }
 
@@ -236,8 +250,8 @@ public class PolynomialTest {
     poly.addTerm(-1, 16);
     poly.addTerm(8, 8);
     poly.addTerm(42, 50);
-    poly.addTerm(-12575,0);
-    assertEquals(2.7868010475736477E65, poly.evaluate(2.2),2);
+    poly.addTerm(-12575, 0);
+    assertEquals(2.7868010475736477E65, poly.evaluate(2.2), 2);
   }
 
   @Test
@@ -253,7 +267,7 @@ public class PolynomialTest {
     poly.addTerm(-1, 16);
     poly.addTerm(8, 8);
     poly.addTerm(42, 50);
-    poly.addTerm(-12575,0);
+    poly.addTerm(-12575, 0);
     assertEquals("23125x^184+10168x^123-13632x^95+13552x^87+2025x^74+4345x^54+2100x^49" +
             "+945x^44-16x^15+64x^7", poly.derivative().toString());
   }
@@ -271,14 +285,14 @@ public class PolynomialTest {
     poly.addTerm(-1, 16);
     poly.addTerm(8, 8);
     poly.addTerm(42, 50);
-    poly.addTerm(-12575,0);
+    poly.addTerm(-12575, 0);
 
     Polynomial newP = new PolynomialImpl();
-    newP.addTerm(5,100);
-    newP.addTerm(-42,85);
-    newP.addTerm(16,42);
-    newP.addTerm(1,16);
-    newP.addTerm(12575,0);
+    newP.addTerm(5, 100);
+    newP.addTerm(-42, 85);
+    newP.addTerm(16, 42);
+    newP.addTerm(1, 16);
+    newP.addTerm(12575, 0);
 
     assertEquals("5x^100-42x^85+16x^42+1x^16+12575", newP.toString());
     assertEquals("125x^185+82x^124-142x^96+154x^88+27x^75+79x^55+42x^50+21x^45-1x^16" +
@@ -300,14 +314,14 @@ public class PolynomialTest {
     poly.addTerm(-1, 16);
     poly.addTerm(8, 8);
     poly.addTerm(42, 50);
-    poly.addTerm(-12575,0);
+    poly.addTerm(-12575, 0);
 
     Polynomial newP = new PolynomialImpl();
-    newP.addTerm(5,100);
-    newP.addTerm(-42,85);
-    newP.addTerm(16,42);
-    newP.addTerm(1,16);
-    newP.addTerm(12575,0);
+    newP.addTerm(5, 100);
+    newP.addTerm(-42, 85);
+    newP.addTerm(16, 42);
+    newP.addTerm(1, 16);
+    newP.addTerm(12575, 0);
 
 
     assertEquals("5x^100-42x^85+16x^42+1x^16+12575", newP.toString());
@@ -335,18 +349,98 @@ public class PolynomialTest {
     poly.addTerm(-1, 16);
     poly.addTerm(8, 8);
     poly.addTerm(42, 50);
-    poly.addTerm(-12575,0);
+    poly.addTerm(-12575, 0);
 
     Polynomial newP = new PolynomialImpl();
-    newP.addTerm(5,100);
-    newP.addTerm(-42,85);
-    newP.addTerm(16,42);
-    newP.addTerm(1,16);
-    newP.addTerm(12575,0);
+    newP.addTerm(5, 100);
+    newP.addTerm(-42, 85);
+    newP.addTerm(16, 42);
+    newP.addTerm(1, 16);
+    newP.addTerm(12575, 0);
 
     assertEquals(false, poly.equals(newP));
   }
 
+  @Test
+  public void testMultiplePolynomialAdd() {
+    Polynomial poly = new PolynomialImpl();
+    Polynomial newP = new PolynomialImpl();
+    Polynomial otherP = new PolynomialImpl();
+    Polynomial finalP = new PolynomialImpl();
+
+    poly.addTerm(5, 5);
+    poly.addTerm(2, 3);
+    poly.addTerm(12, 0);
+
+    newP.addTerm(-2, 5);
+    newP.addTerm(8, 4);
+    newP.addTerm(-20, 0);
+
+    otherP.addTerm(1, 2);
+    otherP.addTerm(-8, 2);
+
+    finalP.addTerm(0, 0);
+
+    assertEquals("3x^5+8x^4+2x^3-7x^2-8", poly.add(newP).add(otherP).add(finalP)
+            .toString());
+  }
+
+  @Test
+  public void testMultiplePolynomialMultiplyZero() {
+    Polynomial poly = new PolynomialImpl();
+    Polynomial newP = new PolynomialImpl();
+    Polynomial otherP = new PolynomialImpl();
+    Polynomial finalP = new PolynomialImpl();
+
+    poly.addTerm(5, 5);
+    poly.addTerm(2, 3);
+    poly.addTerm(12, 0);
+
+    newP.addTerm(-2, 5);
+    newP.addTerm(8, 4);
+    newP.addTerm(-20, 0);
+
+    otherP.addTerm(1, 2);
+    otherP.addTerm(-8, 2);
+
+    finalP.addTerm(0, 0);
+
+    assertEquals("0", poly.multiply(newP).multiply(otherP).multiply(finalP)
+            .toString());
+  }
+
+  @Test
+  public void testMultiplePolynomialMultiply() {
+    Polynomial poly = new PolynomialImpl();
+    Polynomial newP = new PolynomialImpl();
+    Polynomial otherP = new PolynomialImpl();
+    Polynomial finalP = new PolynomialImpl();
+
+    poly.addTerm(5, 5);
+    poly.addTerm(2, 3);
+    poly.addTerm(12, 0);
+
+    newP.addTerm(-2, 5);
+    newP.addTerm(8, 4);
+    newP.addTerm(-20, 0);
+
+    otherP.addTerm(1, 2);
+    otherP.addTerm(-8, 2);
+
+    finalP.addTerm(5, 0);
+    finalP.addTerm(25, 4);
+    finalP.addTerm(8, 3);
+
+    assertEquals("1750x^16-6440x^15-1540x^14-2576x^13-546x^12+20300x^11-9716x^10" +
+                    "+1064x^9+2240x^8+4340x^7+38640x^6+14840x^5+8400x^2",
+            poly.multiply(newP).multiply(otherP).multiply(finalP).toString());
+    assertEquals(16, poly.multiply(newP).multiply(otherP).multiply(finalP).getDegree());
+    assertEquals(14840, poly.multiply(newP).multiply(otherP).multiply(finalP)
+            .getCoefficient(5));
+    assertEquals("28000x^15-96600x^14-21560x^13-33488x^12-6552x^11+223300x^10-97160x^9" +
+                    "+9576x^8+17920x^7+30380x^6+231840x^5+74200x^4+16800x^1",
+            poly.multiply(newP).multiply(otherP).multiply(finalP).derivative().toString());
+  }
 
 
 }
